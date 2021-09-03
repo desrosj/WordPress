@@ -82,7 +82,7 @@ this["wp"] = this["wp"] || {}; this["wp"]["editPost"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 361);
+/******/ 	return __webpack_require__(__webpack_require__.s = 368);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -140,6 +140,13 @@ function _possibleConstructorReturn(self, call) {
 
 /***/ }),
 
+/***/ 128:
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["notices"]; }());
+
+/***/ }),
+
 /***/ 13:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -151,13 +158,6 @@ function _getPrototypeOf(o) {
   };
   return _getPrototypeOf(o);
 }
-
-/***/ }),
-
-/***/ 131:
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["wp"]["notices"]; }());
 
 /***/ }),
 
@@ -220,10 +220,17 @@ function _defineProperty(obj, key, value) {
 /***/ }),
 
 /***/ 16:
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["keycodes"]; }());
+
+/***/ }),
+
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2017 Jed Watson.
+  Copyright (c) 2018 Jed Watson.
   Licensed under the MIT License (MIT), see
   http://jedwatson.github.io/classnames
 */
@@ -234,7 +241,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 	var hasOwn = {}.hasOwnProperty;
 
-	function classNames () {
+	function classNames() {
 		var classes = [];
 
 		for (var i = 0; i < arguments.length; i++) {
@@ -245,16 +252,22 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 			if (argType === 'string' || argType === 'number') {
 				classes.push(arg);
-			} else if (Array.isArray(arg) && arg.length) {
-				var inner = classNames.apply(null, arg);
-				if (inner) {
-					classes.push(inner);
+			} else if (Array.isArray(arg)) {
+				if (arg.length) {
+					var inner = classNames.apply(null, arg);
+					if (inner) {
+						classes.push(inner);
+					}
 				}
 			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
+				if (arg.toString === Object.prototype.toString) {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
 					}
+				} else {
+					classes.push(arg.toString());
 				}
 			}
 		}
@@ -274,13 +287,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 	} else {}
 }());
 
-
-/***/ }),
-
-/***/ 17:
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["wp"]["keycodes"]; }());
 
 /***/ }),
 
@@ -353,7 +359,7 @@ function _toConsumableArray(arr) {
 
 /***/ }),
 
-/***/ 209:
+/***/ 208:
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["wp"]["blockLibrary"]; }());
@@ -848,7 +854,7 @@ function _iterableToArray(iter) {
 
 /***/ }),
 
-/***/ 361:
+/***/ 368:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -920,16 +926,16 @@ var external_this_wp_coreData_ = __webpack_require__(84);
 var external_this_wp_editor_ = __webpack_require__(6);
 
 // EXTERNAL MODULE: external {"this":["wp","nux"]}
-var external_this_wp_nux_ = __webpack_require__(56);
+var external_this_wp_nux_ = __webpack_require__(55);
 
 // EXTERNAL MODULE: external {"this":["wp","viewport"]}
 var external_this_wp_viewport_ = __webpack_require__(40);
 
 // EXTERNAL MODULE: external {"this":["wp","notices"]}
-var external_this_wp_notices_ = __webpack_require__(131);
+var external_this_wp_notices_ = __webpack_require__(128);
 
 // EXTERNAL MODULE: external {"this":["wp","blockLibrary"]}
-var external_this_wp_blockLibrary_ = __webpack_require__(209);
+var external_this_wp_blockLibrary_ = __webpack_require__(208);
 
 // EXTERNAL MODULE: external {"this":["wp","data"]}
 var external_this_wp_data_ = __webpack_require__(5);
@@ -1425,7 +1431,7 @@ function CopyContentMenuItem(_ref) {
 }))(CopyContentMenuItem));
 
 // EXTERNAL MODULE: external {"this":["wp","keycodes"]}
-var external_this_wp_keycodes_ = __webpack_require__(17);
+var external_this_wp_keycodes_ = __webpack_require__(16);
 
 // CONCATENATED MODULE: ./node_modules/@wordpress/edit-post/build-module/plugins/keyboard-shortcuts-help-menu-item/index.js
 
@@ -1802,7 +1808,7 @@ var reducer_metaBoxes = Object(external_this_wp_data_["combineReducers"])({
 }));
 
 // EXTERNAL MODULE: ./node_modules/refx/refx.js
-var refx = __webpack_require__(94);
+var refx = __webpack_require__(92);
 var refx_default = /*#__PURE__*/__webpack_require__.n(refx);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js + 1 modules
@@ -2395,7 +2401,7 @@ var effects = {
       window.tinyMCE.triggerSave();
     }
 
-    var state = store.getState(); // Additional data needed for backwards compatibility.
+    var state = store.getState(); // Additional data needed for backward compatibility.
     // If we do not provide this data, the post will be overridden with the default values.
 
     var post = Object(external_this_wp_data_["select"])('core/editor').getCurrentPost(state);
@@ -2610,7 +2616,7 @@ store_store.dispatch({
 });
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(16);
+var classnames = __webpack_require__(17);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: external {"this":["wp","url"]}
@@ -6093,7 +6099,15 @@ function reinitializeEditor(postType, postId, target, settings, initialEdits) {
 function initializeEditor(id, postType, postId, settings, initialEdits) {
   var target = document.getElementById(id);
   var reboot = reinitializeEditor.bind(null, postType, postId, target, settings, initialEdits);
-  Object(external_this_wp_blockLibrary_["registerCoreBlocks"])();
+  Object(external_this_wp_blockLibrary_["registerCoreBlocks"])(); // Show a console log warning if the browser is not in Standards rendering mode.
+
+  var documentMode = document.compatMode === 'CSS1Compat' ? 'Standards' : 'Quirks';
+
+  if (documentMode !== 'Standards') {
+    // eslint-disable-next-line no-console
+    console.warn("Your browser is using Quirks Mode. \nThis can cause rendering issues such as blocks overlaying meta boxes in the editor. Quirks Mode can be triggered by PHP errors or HTML code appearing before the opening <!DOCTYPE html>. Try checking the raw page source or your site's PHP error log and resolving errors there, removing any HTML before the doctype, or disabling plugins.");
+  }
+
   Object(external_this_wp_data_["dispatch"])('core/nux').triggerGuide(['core/editor.inserter', 'core/editor.settings', 'core/editor.preview', 'core/editor.publish']);
   Object(external_this_wp_element_["render"])(Object(external_this_wp_element_["createElement"])(editor, {
     settings: settings,
@@ -6164,7 +6178,7 @@ function _nonIterableRest() {
 
 /***/ }),
 
-/***/ 56:
+/***/ 55:
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["wp"]["nux"]; }());
@@ -6250,7 +6264,7 @@ function _createClass(Constructor, protoProps, staticProps) {
 
 /***/ }),
 
-/***/ 94:
+/***/ 92:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
